@@ -103,12 +103,9 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(Intent.createChooser(email,"Choose an Email client : "));
 
                             }else {
-                                int permissionCheck = PermissionChecker.checkSelfPermission(MainActivity.this,Manifest.permission.READ_SMS);
-                                Intent sms=new Intent(Intent.ACTION_SEND,Uri.parse("sms: "));
-                                if (permissionCheck != PermissionChecker.PERMISSION_GRANTED){
-                                    ActivityCompat.requestPermissions(MainActivity.this,
-                                            new String[]{Manifest.permission.READ_SMS}, 0);
-                                    startActivity(sms);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + 97227820));
+                                intent.putExtra("sms_body", "message");
+                                startActivity(intent);
                                     // stops the action from proceeding further as permission not
                                     //  granted yet
                                     return;
@@ -122,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.LENGTH_LONG).show();
                             }
 
-                            }
+
                     });
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
